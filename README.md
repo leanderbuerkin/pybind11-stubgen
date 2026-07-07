@@ -33,6 +33,7 @@ pybind11-stubgen [-h]
                   --numpy-array-use-type-var|
                   --numpy-array-remove-parameters]
                  [--print-invalid-expressions-as-is]
+                 [--surround-invalid-expressions-with-single-quotes]
                  [--print-value-comments]
                  [--print-safe-value-reprs REGEX]
                  [--exit-code]
@@ -44,15 +45,20 @@ Contributing
 ------------
 
 During development, you may need to update the reference stubs in tests/stubs. This can be done locally using a convenience tox configuration. Ensure that all Python interpreters required by the test suite are available in your environment. For example, you can install them via uv:
+
 ```shell
 uv python install 3.10 3.11 3.12 3.13
 ```
+
 To enable the repository hooks locally:
+
 ```shell
 uv sync
 uv run pre-commit install
 ```
+
 To regenerate the reference stubs run:
+
 ```shell
 uv venv
 source .venv/bin/activate

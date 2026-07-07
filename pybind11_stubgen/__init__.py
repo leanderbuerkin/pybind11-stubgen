@@ -75,6 +75,7 @@ class CLIArgs(Namespace):
     numpy_array_use_type_var: bool
     numpy_array_remove_parameters: bool
     print_invalid_expressions_as_is: bool
+    surround_invalid_expressions_with_single_quotes: bool
     print_safe_value_reprs: re.Pattern | None
     print_value_comments: bool
     exit_code: bool
@@ -185,6 +186,14 @@ def arg_parser() -> ArgumentParser:
         action="store_true",
         help="Suppress the replacement with '...' of invalid expressions"
         "found in annotations",
+    )
+
+    parser.add_argument(
+        "--surround-invalid-expressions-with-single-quotes",
+        default=False,
+        action="store_true",
+        help="Surround invalid expressions found in annotations with single quotes (')"
+        "to postprocess them more easily e.g. with ast.parse(); Overwrites --print-invalid-expressions-as-is",
     )
 
     parser.add_argument(
@@ -325,6 +334,7 @@ def main(argv: Sequence[str] | None = None) -> None:
     printer = Printer(
         invalid_expr_as_ellipses=not args.print_invalid_expressions_as_is,
         print_value_comments=args.print_value_comments,
+        surround_invalid_expr_with_single_quotes=args.surround_invalid_expressions_with_single_quotes,
     )
 
     run(

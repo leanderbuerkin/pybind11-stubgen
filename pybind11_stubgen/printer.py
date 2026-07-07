@@ -141,8 +141,12 @@ class Printer:
         self,
         invalid_expr_as_ellipses: bool,
         print_value_comments: bool = False,
+        surround_invalid_expr_with_single_quotes: bool = False,
     ):
         self.invalid_expr_as_ellipses = invalid_expr_as_ellipses
+        self.surround_invalid_expr_with_single_quotes = (
+            surround_invalid_expr_with_single_quotes
+        )
         self.print_value_comments = print_value_comments
 
     def _order_classes(self, classes: list[Class]) -> list[Class]:
@@ -440,6 +444,8 @@ class Printer:
             raise AssertionError()
 
     def print_invalid_exp(self, invalid_expr: InvalidExpression) -> str:
+        if self.surround_invalid_expr_with_single_quotes:
+            return f"'{invalid_expr.text}'"
         if self.invalid_expr_as_ellipses:
             return "..."
         return invalid_expr.text

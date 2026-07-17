@@ -184,7 +184,7 @@ def arg_parser() -> ArgumentParser:
         "--print-invalid-expressions-as-is",
         default=False,
         action="store_true",
-        help="Suppress the replacement with '...' of invalid expressions"
+        help="Suppress the replacement with '...' of invalid expressions "
         "found in annotations",
     )
 
@@ -192,7 +192,7 @@ def arg_parser() -> ArgumentParser:
         "--surround-invalid-expressions-with-single-quotes",
         default=False,
         action="store_true",
-        help="Surround invalid expressions found in annotations with single quotes (')"
+        help="Surround invalid expressions found in annotations with single quotes (') "
         "to postprocess them more easily e.g. with ast.parse(); Overwrites --print-invalid-expressions-as-is",
     )
 
